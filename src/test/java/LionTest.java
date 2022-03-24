@@ -64,4 +64,3 @@ public class LionTest {
         assertNotEquals("Метод должен возвращать питание хищников", expected, actual);
     }
 }
-

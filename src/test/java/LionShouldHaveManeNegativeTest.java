@@ -5,6 +5,9 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.mockito.Mock;
 
+import static org.junit.Assert.assertThrows;
+import static org.junit.Assert.assertTrue;
+
 @RunWith(Parameterized.class)
 public class LionShouldHaveManeNegativeTest {
 
@@ -14,13 +17,12 @@ public class LionShouldHaveManeNegativeTest {
     private final String sex;
     private static Exception expectedException = new Exception();
 
-
     public LionShouldHaveManeNegativeTest(String sex, Exception expectedException) {
         this.sex = sex;
         this.expectedException = expectedException;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные: {0} {1}")
     public static Object[] getHasManeData() {
         return new Object[][]{
                 {"Непонятно", expectedException},
@@ -28,12 +30,16 @@ public class LionShouldHaveManeNegativeTest {
         };
     }
 
-    @Test(expected=Exception.class)
-    public void shouldHaveManePositiveResult() throws Exception {
-        Lion lion = new Lion(feline, this.sex);
-        lion.doesHaveMane();
+    @Test
+    public void shouldHaveManePositiveResult() {
+        Exception ex = assertThrows(Exception.class, () -> {
+            Lion lion = new Lion(feline, this.sex);
+            lion.doesHaveMane();
+        });
+
+        String expectedExceptionMessage = "Используйте допустимые значения пола животного - самец или самка";
+        String actualExceptionMessage = ex.getMessage();
+
+        assertTrue(actualExceptionMessage.contains(expectedExceptionMessage));
     }
 }
-
-
-

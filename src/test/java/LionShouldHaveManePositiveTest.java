@@ -16,13 +16,12 @@ public class LionShouldHaveManePositiveTest {
     private final String sex;
     private final boolean expectedHasMane;
 
-
     public LionShouldHaveManePositiveTest(String sex, boolean expectedHasMane) {
         this.sex = sex;
         this.expectedHasMane = expectedHasMane;
     }
 
-    @Parameterized.Parameters
+    @Parameterized.Parameters(name = "Тестовые данные: {0} {1}")
     public static Object[] getHasManeData() {
         return new Object[][]{
                 {"Самец", true},
@@ -38,5 +37,3 @@ public class LionShouldHaveManePositiveTest {
         assertEquals(actualHasMane, expectedHasMane);
     }
 }
-
-

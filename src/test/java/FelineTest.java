@@ -25,7 +25,7 @@ public class FelineTest {
     }
 
     @Test
-    public void getFoodTest() throws Exception{
+    public void getFoodTest() throws Exception {
         feline.getFood("Хищник");
         Mockito.verify(feline).getFood("Хищник");
     }
@@ -60,6 +60,4 @@ public class FelineTest {
         int kittensCount = 10;
         assertEquals(kittensCount, feline.getKittens(kittensCount));
     }
-
 }
-

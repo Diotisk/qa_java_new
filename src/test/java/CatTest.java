@@ -42,6 +42,4 @@ public class CatTest {
         List<String> actual = cat.getFood();
         assertNotEquals("Метод должен возвращать питание хищников", expected, actual);
     }
-
 }
-
